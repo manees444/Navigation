@@ -30,21 +30,20 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.Holder
     public Holder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(ctx).inflate(R.layout.listview_item, parent, false);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
         return new Holder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int position) {
+    public void onBindViewHolder(@NonNull Holder holder, final int position) {
         holder.itemView.requestLayout();
         holder.textView.setText(fruits[position]);
         holder.imageView.setImageResource(image[position]);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ctx, fruits[position], Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
